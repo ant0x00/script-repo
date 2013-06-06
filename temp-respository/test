@@ -6,7 +6,7 @@
 
 # Version 0.1
 # Author: wang long
-
+# Date: 2013-06
 read -p "please input the file or directory name:" filename
 [ -z $filename ] && echo "You MUST input a file name." && exit 0
 
