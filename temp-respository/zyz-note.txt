@@ -1,0 +1,127 @@
+# create a android mirror resp
+repo init -u https://android.googlesource.com/platform/manifest -b android-4.1.1_r4 --mirror
+
+# install a gerrit server
+0) preparation for pre-conditions(SMTP<SKIP>, ssh server, MySQL, Apache2)
+	sudo apt-get install apache2
+
+	/etc/apache2/httpd.conf
+	
+	<VirtualHost *>
+    LoadModule proxy_module /usr/lib/apache2/modules/mod_proxy.so
+    LoadModule proxy_http_module /usr/lib/apache2/modules/mod_proxy_http.so
+    ServerName gerrit
+
+    ProxyRequests Off
+    ProxyVia Off
+    ProxyPreserveHost On
+
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    <Location /login/>
+        AuthType Basic
+        AuthName "Gerrit Code Review"
+        AuthBasicProvider file
+        AuthUserFile /home/zhangyuz/proj/gerrit/www/etc/passwords
+        Require valid-user
+    </Location>
+
+    ProxyPass / http://localhost:8081/
+
+	</VirtualHost>
+	
+1) download the gerrit wars.
+2) choose a suitable database(MySQL)
+	
+	a,create a user for gerrit
+	b,create a database for gerrit
+	sudo apt-get install mysql-server-5.1
+	set passwd 123qwe during installation
+	sudo mysql_install_db
+	sudo mysql_secure_installation
+	mysql -u root -p
+	CREATE USER 'gerrit'@'localhost' IDENTIFIED BY '123qwe';
+	CREATE DATABASE gerritdb;
+	ALTER DATABASE gerritdb charset=latin1;
+	GRANT ALL ON gerritdb.* TO 'gerrit'@'localhost';
+	FLUSH PRIVILEGES;
+	
+3) create a gerrit user to run the www server (SKIP)
+4) run the gerrit init phase
+	java -jar path/gerrit.war init -d path/to/somewhere
+	
+5) create the first user in gerrit
+	htpasswd -c /home/zhangyuz/proj/gerrit/www/etc/passwords gerrit
+	chmod 666 /home/zhangyuz/proj/gerrit/www/application/etc/passwords
+	
+	git config --file $site_path/etc/gerrit.config auth.type HTTP
+	git config --file $site_path/etc/gerrit.config --unset auth.httpHeader
+
+	$site_path/etc/gerrit.conf
+	[gerrit]
+	basePath = /home/zhangyuz/proj/gerrit/src/android-mirror
+    canonicalWebUrl = http://localhost
+	[database]
+	type = MYSQL
+	hostname = localhost
+	database = gerritdb
+	username = gerrit
+	[auth]
+	type = HTTP
+	[sendemail]
+	smtpServer = localhost
+	[container]
+	user = zhangyuz
+	javaHome = /usr/lib/jvm/java-6-sun-1.6.0.34/jre
+    slave = false
+	[sshd]
+	listenAddress = *:29418
+	[httpd]
+	listenUrl = proxy-http://*:8081/
+	[cache]
+	directory = cache
+
+
+
+
+Create Partition & FS on disk
+1:sudo fdisk /dev/some-disk
+2:follow the promopt to create new partiation
+3:sudo mkfs.XXX to format the partition (you should man mkfs to get more info)
+
+Install JDK
+
+download JDK from Oracle
+
+sudo mkdir /usr/lib/jvm -p
+
+cp jdk_name.bin /usr/lib/jvm
+
+sudo ./jdk_name.bin
+
+export the following var to users who need java
+
+export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_45
+
+export JRE_HOME=/usr/lib/jvm/jdk1.6.0_45/jre 
+
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH 
+
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH 
+
+
+
+Add gerrit user
+htpasswd -b /data/var/www/etc/passwords username pwd
+htpasswd -b /data/var/www/etc/passwords tkboy 123qwe 
+htpasswd -b /data/var/www/etc/passwords wanglong 123qwe 
+htpasswd -b /data/var/www/etc/passwords lisheng 123qwe 
+htpasswd -b /data/var/www/etc/passwords chenxinzhi 123qwe 
+htpasswd -b /data/var/www/etc/passwords chenyi 123qwe 
+htpasswd -b /data/var/www/etc/passwords huangkuntian 123qwe 
+htpasswd -b /data/var/www/etc/passwords dengfanping 123qwe 
+htpasswd -b /data/var/www/etc/passwords dujiang 123qwe 
+htpasswd -b /data/var/www/etc/passwords wanghuimin 123qwe 
