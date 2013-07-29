@@ -1,6 +1,6 @@
 import sys, os
 
-def main_argv(argv=None):
+def test_argv(argv=None):
     print sys.argv
     print len(sys.argv)
     print sys.argv[0]
@@ -8,4 +8,4 @@ def main_argv(argv=None):
 
 if __name__ == "__main__":
     print sys.argv[:]
-    main_argv()
+    test_argv()
