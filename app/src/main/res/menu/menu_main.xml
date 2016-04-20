@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.zjwlong.recyclerviewdemo00.MainActivity">
+
+    <item
+        android:id="@+id/action_listview"
+        android:orderInCategory="100"
+        android:title="list View"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_gridview"
+        android:orderInCategory="100"
+        android:title="Grid View"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_hor_gridview"
+        android:orderInCategory="100"
+        android:title="Hor Grid view"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_ver_gridview"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_stagged_gridview"
+        android:orderInCategory="100"
+        android:title="stagged Grid view"
+        app:showAsAction="never" />
+</menu>
