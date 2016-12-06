@@ -14,6 +14,9 @@ public class TempTest {
         a.age = 10;
         t.test1(a);
         System.out.println("main方法中的age=" + a.age);
+        Float x = 100.2F;
+        String str = Double.toString(999.99);
+        System.out.println("main方法中的age=" + str);
     }
 }
 
