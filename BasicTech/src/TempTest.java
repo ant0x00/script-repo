@@ -2,20 +2,27 @@
  * Created by wanglong on 16/12/5.
  */
 public class TempTest {
-    private void test1(A a) {
-        a = new A();
-        a.age = 20;
-        System.out.println("test1方法中的age=" + a.age);
-    }
-
     public static void main(String[] args) {
-        TempTest t = new TempTest();
-
-        char cTmp = '在';
-        System.out.println(cTmp);
+//        test01();
+        test02();
     }
+
+    static void test01() {
+        int x = 20;
+
+        do {
+            System.out.print("value of x : " + x);
+            x++;
+            System.out.print("\n");
+        } while (x < 20);
+    }
+
+    static void test02() {
+        String str01 = null;
+        if (str01 == null) {
+            System.out.print("string is Object.");
+        }
+    }
+
 }
 
-class A {
-    public int age = 0;
-}
