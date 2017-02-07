@@ -1,7 +1,7 @@
 /**
  * Created by wanglong on 16/12/5.
  */
-public class TempTest {
+public class MainTest {
     public static void main(String[] args) {
 //        test01();
         test02();
