@@ -1,3 +1,5 @@
+package com.ant0x00.test;
+
 import java.io.*;
 
 /**
@@ -18,8 +20,11 @@ public class TempTest {
         for (int i = 0; i < args.length; i++) {
             System.out.println(args[i]);
         }
-//        System.out.println("test1方法中的staticVarOfA=" + A.staticVarOfA);
-        test4();
+//        test4();
+        short i =118; i += 1;
+        Character c = new Character((char)i);
+        System.out.println(c);
+        System.out.println((byte)i);
     }
 
     /**
