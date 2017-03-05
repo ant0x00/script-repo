@@ -7,6 +7,7 @@ import java.io.*;
  */
 public class TempTest {
 
+    private String memVar;
     /**
      * 静态代码块
      * Java程序初始化顺序： 父类静态变量、父类静态代码块、子类静态变量、子类静态代码块、
@@ -25,6 +26,14 @@ public class TempTest {
         Character c = new Character((char)i);
         System.out.println(c);
         System.out.println((byte)i);
+    }
+
+    /**
+     * 只有非静态方法才能访问类的非静态成员变量
+     * @param var
+     */
+    private void setMemVar(String var){
+        memVar = var;
     }
 
     /**
@@ -93,7 +102,7 @@ public class TempTest {
         } while (!"end".equals(str));
     }
 
-    private static void test1(A a) {
+    static void test1(A a) {
         a = new A();
         a.age = 20;
         System.out.println("test1方法中的age=" + a.age);
