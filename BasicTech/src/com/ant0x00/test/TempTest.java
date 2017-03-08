@@ -22,10 +22,24 @@ public class TempTest {
             System.out.println(args[i]);
         }
 //        test4();
-        short i =118; i += 1;
-        Character c = new Character((char)i);
-        System.out.println(c);
-        System.out.println((byte)i);
+        dirFiles("/Users/");
+    }
+
+    public static void dirFiles(String path){
+        File file =new File(path);
+        if(!file.exists()){
+            System.out.println("Directory is empty");
+            return;
+        }
+
+        File[] fileList = file.listFiles();
+        for (int i=0; i<fileList.length; i++){
+            if(fileList[i].isDirectory()){
+                System.out.println("Directory is "+ fileList[i].getName());
+            }else {
+                System.out.println("File name is "+ fileList[i].getName());
+            }
+        }
     }
 
     /**
@@ -109,6 +123,9 @@ public class TempTest {
     }
 }
 
+/**
+ * 内部类
+ */
 class A {
     public int age = 0;
     public static int staticVarOfA;
