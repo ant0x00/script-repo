@@ -8,6 +8,7 @@ import java.io.*;
 public class TempTest {
 
     private String memVar;
+
     /**
      * 静态代码块
      * Java程序初始化顺序： 父类静态变量、父类静态代码块、子类静态变量、子类静态代码块、
@@ -21,32 +22,40 @@ public class TempTest {
         for (int i = 0; i < args.length; i++) {
             System.out.println(args[i]);
         }
-//        test4();
-        dirFiles("/Users/");
+        reverseString();
     }
 
-    public static void dirFiles(String path){
-        File file =new File(path);
-        if(!file.exists()){
+    public static void reverseString() {
+        String string = "abcdef";
+        String reverse = new StringBuffer(string).reverse().toString();
+        System.out.println("\nString before reverse:" + string);
+        System.out.println("String after reverse:" + reverse);
+    }
+
+
+    public static void dirFiles(String path) {
+        File file = new File(path);
+        if (!file.exists()) {
             System.out.println("Directory is empty");
             return;
         }
 
         File[] fileList = file.listFiles();
-        for (int i=0; i<fileList.length; i++){
-            if(fileList[i].isDirectory()){
-                System.out.println("Directory is "+ fileList[i].getName());
-            }else {
-                System.out.println("File name is "+ fileList[i].getName());
+        for (int i = 0; i < fileList.length; i++) {
+            if (fileList[i].isDirectory()) {
+                System.out.println("Directory is " + fileList[i].getName());
+            } else {
+                System.out.println("File name is " + fileList[i].getName());
             }
         }
     }
 
     /**
      * 只有非静态方法才能访问类的非静态成员变量
+     *
      * @param var
      */
-    private void setMemVar(String var){
+    private void setMemVar(String var) {
         memVar = var;
     }
 
