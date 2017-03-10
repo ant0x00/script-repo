@@ -22,7 +22,7 @@ public class TempTest {
         for (int i = 0; i < args.length; i++) {
             System.out.println(args[i]);
         }
-        reverseString();
+        dirAllDirsAndFiles(new File("."));
     }
 
     public static void reverseString() {
@@ -32,6 +32,24 @@ public class TempTest {
         System.out.println("String after reverse:" + reverse);
     }
 
+    /**
+     * 递归遍历
+     *
+     * @param dir
+     */
+    public static void dirAllDirsAndFiles(File dir) {
+        System.out.println(dir);
+//        if (!dir.exists()) {
+//            System.out.println("Directory is empty");
+//            return;
+//        }
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                dirAllDirsAndFiles(new File(dir, children[i]));
+            }
+        }
+    }
 
     public static void dirFiles(String path) {
         File file = new File(path);
