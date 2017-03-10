@@ -39,10 +39,10 @@ public class TempTest {
      */
     public static void dirAllDirsAndFiles(File dir) {
         System.out.println(dir);
-//        if (!dir.exists()) {
-//            System.out.println("Directory is empty");
-//            return;
-//        }
+        if (!dir.exists()) {
+            System.out.println("Directory is empty");
+            return;
+        }
         if (dir.isDirectory()) {
             String[] children = dir.list();
             for (int i = 0; i < children.length; i++) {
